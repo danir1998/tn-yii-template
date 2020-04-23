@@ -91,7 +91,7 @@ class SiteController extends Controller
         if ($model->login()){
             return $this->setOutput(["status" => "success", "token" => $model->getAuth()]);
         } else {
-            return $this->setOutput(["status" => "error"], 401);
+            return $this->setOutput(["status" => "error"], 404);
         }
     }
 
