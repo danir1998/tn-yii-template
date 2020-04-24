@@ -67,6 +67,7 @@ class SiteController extends Controller
         $m = User::findOne(1);
         $m->email = 'danir';
         $m->save();
+        //Пример создания пользователей с AUTH KEY
         /*$user = new User();
         $user->username = 'admin';
         $user->email = 'admin@кодер.укр';
@@ -80,9 +81,10 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
+     * REST Login action.
      *
      * @return Response|string
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionLogin()
     {
@@ -95,6 +97,11 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Вывод JSON  с возможностью отправки статуса
+     * @param $data
+     * @param int $status
+     */
     public function setOutput($data, $status = 200)
     {
         $response = Yii::$app->response;

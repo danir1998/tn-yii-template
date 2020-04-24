@@ -22,6 +22,15 @@ class Tuples extends \yii\db\ActiveRecord
     }
 
     /**
+     * Разрешаем подключать в GET запросе expand пример: http://yii/tuples/1?expand=user
+     * @return array|false
+     */
+    public function extraFields()
+    {
+        return ['user'];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function rules()
@@ -42,5 +51,14 @@ class Tuples extends \yii\db\ActiveRecord
             'name' => 'Name',
             'price' => 'Price',
         ];
+    }
+
+    /**
+     * Создаем связь
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ["id" => "idUser"])->asArray();
     }
 }
